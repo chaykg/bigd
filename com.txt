@@ -1,0 +1,34 @@
+
+start-all.sh
+
+jps
+
+export HADOOP_CLASSPATH=$(hadoop classpath)
+
+export HADOOP_CLASSPATH=$(hadoop classpath)
+
+hadoop fs -mkdir /Max_a
+
+hadoop fs -mkdir /Max_a/Input
+
+hadoop fs -put Input.csv /Max_a/Input/
+
+ cd ..
+
+hadoop fs -put ./4SF22IS012A/Input/Input.csv/ /Max_a/Input
+
+cd 4SF22IS012A
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 export PATH=$JAVA_HOME/bin:$PATH
+
+javac -classpath $HADOOP_CLASSPATH -d . MaxTemperature.java
+
+jar -cvf maxi.jar -C . .
+
+jar tf maxi.jar
+
+hadoop jar maxi.jar MaxTemperature /Max_a/Input /Max_a/Input/Output
+
+hadoop fs -cat /Max_a/Input/Output/part-r-00000
+
+ 
